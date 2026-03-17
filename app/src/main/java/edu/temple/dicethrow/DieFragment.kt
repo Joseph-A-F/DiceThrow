@@ -12,8 +12,11 @@ class DieFragment : Fragment() {
 
     val DIESIDE = "sidenumber"
 
+    val CURRENT_DIE_KEY = "current_die_key"
+
     lateinit var dieTextView: TextView
 
+    var currentDieRoll: Int = 1
     var dieSides: Int = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,8 @@ class DieFragment : Fragment() {
     }
 
     fun throwDie() {
-        dieTextView.text = Random.nextInt(dieSides).toString()
+        currentDieRoll = Random.nextInt(1,dieSides+1)
+        dieTextView.text = currentDieRoll.toString()
+
     }
 }
