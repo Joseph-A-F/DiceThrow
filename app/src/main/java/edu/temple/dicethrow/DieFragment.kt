@@ -25,6 +25,12 @@ class DieFragment : Fragment() {
             it.getInt(DIESIDE).run {
                 dieSides = this
             }
+
+        }
+        savedInstanceState?.run {
+            getInt(CURRENT_DIE_KEY).run {
+                currentDieRoll = this
+            }
         }
     }
 
@@ -40,10 +46,16 @@ class DieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        throwDie()
+        if (currentDieRoll == 0) throwDie()
+        else dieTextView.text = currentDieRoll.toString()
         view.setOnClickListener{
             throwDie()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(CURRENT_DIE_KEY,currentDieRoll)
     }
 
     fun throwDie() {
