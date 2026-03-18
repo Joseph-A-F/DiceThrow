@@ -15,8 +15,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (supportFragmentManager.findFragmentById(R.id
-            .fragmentContainerView) == null) {
+        if (supportFragmentManager.findFragmentById(
+                R.id
+                    .fragmentContainerView
+            ) == null ||
+            supportFragmentManager.findFragmentById(
+                R.id
+                    .fragmentContainerView2
+            ) == null
+        ) {
             val dieFragment = DieFragment.newInstance(6)
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainerView, dieFragment)
@@ -25,14 +32,15 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainerView2, dieFragment2)
                 .commit()
+
         }
         findViewById<Button>(R.id.rollDiceButton).setOnClickListener {
             supportFragmentManager
-                .findFragmentById(R.id.fragmentContainerView)?.run{
+                .findFragmentById(R.id.fragmentContainerView)?.run {
                     (this as DieFragment).throwDie()
                 }
             supportFragmentManager
-                .findFragmentById(R.id.fragmentContainerView2)?.run{
+                .findFragmentById(R.id.fragmentContainerView2)?.run {
                     (this as DieFragment).throwDie()
                 }
         }
