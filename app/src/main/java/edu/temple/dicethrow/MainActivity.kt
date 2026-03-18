@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 /** Lab Activity Branch
  * 1. DONE  Create a new branch of your previous in-class activity (Die Roll)
- * 2. Modify the DieFragment class implementation to accept the number sides the die should have (6 is the default) using a Factory Method
- * 3. Add an additional FragmentContainerView to the Activity's layout and include another die so that clicking the Roll button results in 2 dice being rolled
+ * 2. DONE Modify the DieFragment class implementation to accept the number
+ * sides the die should have (6 is the default) using a Factory Method
+ * 3. DONE Add an additional FragmentContainerView to the Activity's layout and include another die so that clicking the Roll button results in 2 dice being rolled
  */
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +35,6 @@ class MainActivity : AppCompatActivity() {
                 .findFragmentById(R.id.fragmentContainerView2)?.run{
                     (this as DieFragment).throwDie()
                 }
-
         }
     }
 }
