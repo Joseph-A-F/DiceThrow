@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import kotlin.random.Random
 
 class DieFragment : Fragment() {
     private lateinit var dieViewModel: DieViewModel
@@ -37,29 +36,19 @@ class DieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (currentDieRoll == 0) throwDie()
-        else dieTextView.text = currentDieRoll.toString()
-        view.setOnClickListener {
-            throwDie()
+        dieViewModel.throwDie()
+        dieViewModel.dieRoll.observe(requireActivity()) {
+            this.dieTextView.text = it.toString()
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(CURRENT_DIE_KEY, currentDieRoll)
-    }
-
-    fun throwDie() {
-        currentDieRoll = Random.nextInt(1, dieSides + 1)
-        dieTextView.text = currentDieRoll.toString()
-
-    }
-
-    companion object {
-        fun newInstance(sides: Int) = DieFragment().apply {
-            arguments = Bundle().apply {
-                putInt(DIESIDE, sides)
-            }
+        val value: Int? = dieViewModel.getSides().value
+        if (value == null) {
+            return
         }
+        outState.putInt(CURRENT_DIE_KEY, value)
     }
+
 }
