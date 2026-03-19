@@ -3,6 +3,7 @@ package edu.temple.dicethrow
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 
 /** Lab Activity Branch
  * 1. DONE  Create a new branch of your previous in-class activity (Die Roll)
@@ -14,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        val dieViewModel = ViewModelProvider(this)[DieViewModel::class.java]
+        dieViewModel.setSides(20)
+
         setContentView(R.layout.activity_main)
         if (supportFragmentManager.findFragmentById(
                 R.id
