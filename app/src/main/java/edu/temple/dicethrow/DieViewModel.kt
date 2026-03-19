@@ -9,7 +9,7 @@ class DieViewModel : ViewModel() {
     var dieSides: Int = 6
     val dieRoll = MutableLiveData<Int>()
 
-    fun getSides(): LiveData<Int> {
+    fun getDieRoll(): LiveData<Int> {
         return dieRoll
     }
 

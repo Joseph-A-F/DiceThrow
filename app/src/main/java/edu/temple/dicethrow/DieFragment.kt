@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 
 class DieFragment : Fragment() {
     private lateinit var dieViewModel: DieViewModel
-    val DIESIDE = "sidenumber"
-
     val CURRENT_DIE_KEY = "current_die_key"
 
     lateinit var dieTextView: TextView
@@ -44,7 +42,7 @@ class DieFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        val value: Int? = dieViewModel.getSides().value
+        val value: Int? = dieViewModel.getDieRoll().value
         if (value == null) {
             return
         }
